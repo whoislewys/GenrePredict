@@ -15,7 +15,7 @@ from keras.layers import Dense, Activation, Flatten, Input, Dropout
 from keras.applications.vgg16 import VGG16
 from keras.callbacks import ModelCheckpoint
 
-MODEL_SAVE_PATH = '../models/genrepredict.h5'
+MODEL_SAVE_PATH = '../models/genrepredict_CHECKPOINT.h5'
 
 def splitsongs(X, y, window=0.1, overlap=0.5):
     """
@@ -95,10 +95,8 @@ genres = {'metal': 0, 'disco': 1, 'classical': 2, 'hiphop': 3, 'jazz': 4,
 # Read the data
 print('reading the data')
 X, y = read_data(gtzan_dir, genres, song_samples, to_melspectrogram, debug=False)
-
-if os.path.exists('x_gtzan_npy.npy') == False:
-    np.save('x_gtzan_npy.npy', X)
-    np.save('y_gtzan_npy.npy', y)
+np.save('x_gtzan_npy.npy', X)
+np.save('y_gtzan_npy.npy', y)
 
 X = np.load('x_gtzan_npy.npy')
 y = np.load('y_gtzan_npy.npy')
