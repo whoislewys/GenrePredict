@@ -3,8 +3,8 @@ from sklearn.model_selection import train_test_split
 import numpy as np
 import keras
 from keras.utils import to_categorical
-from keras.models import Model, load_model
-from keras.layers import Sequential, Dense, Activation, Flatten, Input, Dropout
+from keras.models import Sequential, Model, load_model
+from keras.layers import Dense, Activation, Flatten, Input, Dropout
 from keras.callbacks import ModelCheckpoint
 
 X = np.load('x_gtzan_npy.npy')
@@ -12,6 +12,7 @@ y = np.load('y_gtzan_npy.npy')
 
 y = to_categorical(y)
 
+print()
 print('stacking data like pancakes')
 X_stack = np.squeeze(np.stack((X,) * 3, -1))
 
@@ -29,7 +30,7 @@ model.compile(loss='categorical_crossentropy',
 
 hist = model.fit(X_train, y_train,
 				 batch_size=128,
-				 epochs=5,
+				 epochs=8,
 				 verbose=1,
 				 callbacks=callbacks_list,
 				 validation_data=(X_test, y_test))

@@ -104,6 +104,7 @@ y = np.load('y_gtzan_npy.npy')
 # One hot encoding of the labels
 y = to_categorical(y)
 
+print()
 print('stacking data like pancakes')
 X_stack = np.squeeze(np.stack((X,) * 3, -1))
 # X_stack.shape
